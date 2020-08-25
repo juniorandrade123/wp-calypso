@@ -620,6 +620,10 @@ function useRedirectIfCartEmpty(
 	useEffect( () => {
 		if ( ! isLoading && items.length === 0 && errors.length === 0 ) {
 			debug( 'cart is empty and not still loading; redirecting...' );
+
+			debug( 'Before redirect, first clear redirect url cookie' );
+			clearSignupDestinationCookie();
+
 			if ( createUserAndSiteBeforeTransaction ) {
 				window.localStorage.removeItem( 'shoppingCart' );
 				window.localStorage.removeItem( 'siteParams' );
@@ -630,6 +634,7 @@ function useRedirectIfCartEmpty(
 				window.location = redirectUrl;
 				return;
 			}
+
 			page.redirect( redirectUrl );
 			return;
 		}
