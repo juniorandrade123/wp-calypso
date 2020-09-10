@@ -31,7 +31,9 @@ import SidebarSeparator from 'layout/sidebar/separator';
 import 'layout/sidebar-unified/style.scss';
 import 'state/admin-menu/init';
 
-export const MySitesSidebarUnified = ( { path } ) => {
+import 'style.scss';
+
+export const MySitesSidebarUnified = () => {
 	const reduxDispatch = useDispatch();
 	const selectedSiteId = useSelector( getSelectedSiteId );
 	useEffect( () => {
