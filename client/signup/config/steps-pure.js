@@ -101,7 +101,7 @@ export function generateSteps( {
 			stepName: 'domains-launch',
 			apiRequestFunction: addDomainToCart,
 			fulfilledStepCallback: isDomainFulfilled,
-			providesDependencies: [ 'domainItem' ],
+			providesDependencies: [ 'domainItem', 'shouldHideFreePlan' ],
 			optionalDependencies: [ 'shouldHideFreePlan' ],
 			props: {
 				isDomainOnly: false,
@@ -309,7 +309,13 @@ export function generateSteps( {
 		domains: {
 			stepName: 'domains',
 			apiRequestFunction: createSiteWithCart,
-			providesDependencies: [ 'siteId', 'siteSlug', 'domainItem', 'themeItem' ],
+			providesDependencies: [
+				'siteId',
+				'siteSlug',
+				'domainItem',
+				'themeItem',
+				'shouldHideFreePlan',
+			],
 			optionalDependencies: [ 'shouldHideFreePlan' ],
 			props: {
 				isDomainOnly: false,
@@ -319,7 +325,7 @@ export function generateSteps( {
 
 		'domain-only': {
 			stepName: 'domain-only',
-			providesDependencies: [ 'siteId', 'siteSlug', 'domainItem' ],
+			providesDependencies: [ 'siteId', 'siteSlug', 'domainItem', 'shouldHideFreePlan' ],
 			optionalDependencies: [ 'shouldHideFreePlan' ],
 			props: {
 				isDomainOnly: true,
@@ -329,7 +335,7 @@ export function generateSteps( {
 
 		'select-domain': {
 			stepName: 'select-domain',
-			providesDependencies: [ 'siteId', 'siteSlug', 'domainItem' ],
+			providesDependencies: [ 'siteId', 'siteSlug', 'domainItem', 'shouldHideFreePlan' ],
 			optionalDependencies: [ 'shouldHideFreePlan' ],
 			props: {
 				isAllDomains: true,
@@ -358,6 +364,7 @@ export function generateSteps( {
 				'domainItem',
 				'themeItem',
 				'useThemeHeadstart',
+				'shouldHideFreePlan',
 			],
 			optionalDependencies: [ 'shouldHideFreePlan', 'useThemeHeadstart' ],
 			props: {
@@ -620,7 +627,13 @@ export function generateSteps( {
 		'domains-with-preview': {
 			stepName: 'domains-with-preview',
 			apiRequestFunction: createSiteWithCart,
-			providesDependencies: [ 'siteId', 'siteSlug', 'domainItem', 'themeItem' ],
+			providesDependencies: [
+				'siteId',
+				'siteSlug',
+				'domainItem',
+				'themeItem',
+				'shouldHideFreePlan',
+			],
 			optionalDependencies: [ 'shouldHideFreePlan' ],
 			props: {
 				showSiteMockups: true,
