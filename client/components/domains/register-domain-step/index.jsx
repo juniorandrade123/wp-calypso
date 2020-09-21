@@ -1310,7 +1310,7 @@ class RegisterDomainStep extends React.Component {
 
 		const { isPlanSelectionUnavailableInFlow = false } = this.props;
 		const shouldHideFreeDomainExplainer =
-			isPlanSelectionUnavailableInFlow ||
+			! isPlanSelectionUnavailableInFlow ||
 			this.props.selectedFreePlanInSwapFlow ||
 			this.props.selectedPaidPlanInSwapFlow;
 		return (
