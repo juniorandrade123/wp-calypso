@@ -101,7 +101,8 @@ export function generateSteps( {
 			stepName: 'domains-launch',
 			apiRequestFunction: addDomainToCart,
 			fulfilledStepCallback: isDomainFulfilled,
-			providesDependencies: [ 'domainItem', 'shouldHideFreePlan' ],
+			providesDependencies: [ 'domainItem' ],
+			optionalDependencies: [ 'shouldHideFreePlan' ],
 			props: {
 				isDomainOnly: false,
 				showExampleSuggestions: false,
@@ -308,13 +309,7 @@ export function generateSteps( {
 		domains: {
 			stepName: 'domains',
 			apiRequestFunction: createSiteWithCart,
-			providesDependencies: [
-				'siteId',
-				'siteSlug',
-				'domainItem',
-				'themeItem',
-				'shouldHideFreePlan',
-			],
+			providesDependencies: [ 'siteId', 'siteSlug', 'domainItem', 'themeItem' ],
 			optionalDependencies: [ 'shouldHideFreePlan' ],
 			props: {
 				isDomainOnly: false,
@@ -324,7 +319,8 @@ export function generateSteps( {
 
 		'domain-only': {
 			stepName: 'domain-only',
-			providesDependencies: [ 'siteId', 'siteSlug', 'domainItem', 'shouldHideFreePlan' ],
+			providesDependencies: [ 'siteId', 'siteSlug', 'domainItem' ],
+			optionalDependencies: [ 'shouldHideFreePlan' ],
 			props: {
 				isDomainOnly: true,
 				shouldShowDomainTestCopy: false,
@@ -333,7 +329,8 @@ export function generateSteps( {
 
 		'select-domain': {
 			stepName: 'select-domain',
-			providesDependencies: [ 'siteId', 'siteSlug', 'domainItem', 'shouldHideFreePlan' ],
+			providesDependencies: [ 'siteId', 'siteSlug', 'domainItem' ],
+			optionalDependencies: [ 'shouldHideFreePlan' ],
 			props: {
 				isAllDomains: true,
 				isDomainOnly: true,
@@ -360,7 +357,6 @@ export function generateSteps( {
 				'siteSlug',
 				'domainItem',
 				'themeItem',
-				'shouldHideFreePlan',
 				'useThemeHeadstart',
 			],
 			optionalDependencies: [ 'shouldHideFreePlan', 'useThemeHeadstart' ],
@@ -624,13 +620,7 @@ export function generateSteps( {
 		'domains-with-preview': {
 			stepName: 'domains-with-preview',
 			apiRequestFunction: createSiteWithCart,
-			providesDependencies: [
-				'siteId',
-				'siteSlug',
-				'domainItem',
-				'themeItem',
-				'shouldHideFreePlan',
-			],
+			providesDependencies: [ 'siteId', 'siteSlug', 'domainItem', 'themeItem' ],
 			optionalDependencies: [ 'shouldHideFreePlan' ],
 			props: {
 				showSiteMockups: true,
