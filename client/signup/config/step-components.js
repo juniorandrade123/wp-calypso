@@ -70,6 +70,10 @@ const stepNameToModuleName = {
 	'upsell-plan': 'upsell',
 };
 
+export function getStepModuleName( stepName ) {
+	return stepNameToModuleName[ stepName ] || '';
+}
+
 export async function getStepComponent( stepName ) {
 	const moduleName = stepNameToModuleName[ stepName ];
 	const module = await import(
