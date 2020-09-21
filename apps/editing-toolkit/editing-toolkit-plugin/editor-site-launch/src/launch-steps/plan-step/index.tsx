@@ -49,9 +49,6 @@ const PlanStep: React.FunctionComponent< LaunchStepProps > = ( { onPrevStep, onN
 						) }
 					</SubTitle>
 				</div>
-				<ActionButtons stickyBreakpoint="medium">
-					<BackButton onClick={ handlePrev } />
-				</ActionButtons>
 			</div>
 			<div className="nux-launch-step__body">
 				<PlansGrid
@@ -74,6 +71,11 @@ const PlanStep: React.FunctionComponent< LaunchStepProps > = ( { onPrevStep, onN
 						hasPaidDomain ? defaultPaidPlan : undefined
 					}
 				/>
+			</div>
+			<div className="nux-launch-step__footer">
+				<ActionButtons sticky={ true }>
+					<BackButton onClick={ handlePrev } />
+				</ActionButtons>
 			</div>
 		</LaunchStepContainer>
 	);
