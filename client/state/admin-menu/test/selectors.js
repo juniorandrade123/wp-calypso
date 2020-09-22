@@ -2,7 +2,7 @@
  * External dependencies
  */
 import deepFreeze from 'deep-freeze';
-
+import fallbackResponse from '../fallback-data.json';
 /**
  * Internal dependencies
  */
@@ -19,20 +19,20 @@ describe( 'selectors', () => {
 			expect( getAdminMenu( state, 123456 ) ).toEqual( null );
 		} );
 
-		test( 'returns null when siteId is not provided', () => {
+		test( 'returns null data when siteId is not provided', () => {
 			const state = {};
 
 			expect( getAdminMenu( state ) ).toEqual( null );
 		} );
 
-		test( 'returns null when requested siteId key is not present', () => {
+		test( 'returns fallback data  when requested siteId key is not present', () => {
 			const state = {
 				adminMenu: {
 					56789: frozenFixture,
 				},
 			};
 
-			expect( getAdminMenu( state, 12345 ) ).toEqual( null );
+			expect( getAdminMenu( state, 12345 ) ).toEqual( fallbackResponse );
 		} );
 
 		test( 'returns menu data when siteId is present', () => {
