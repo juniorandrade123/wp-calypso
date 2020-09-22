@@ -13,15 +13,17 @@ import { Title, SubTitle, ActionButtons, BackButton } from '@automattic/onboardi
  */
 import LaunchStepContainer, { Props as LaunchStepProps } from '../../launch-step';
 import { LAUNCH_STORE, PLANS_STORE } from '../../stores';
+import { useSite } from '../../hooks';
 import './styles.scss';
 
 const PlanStep: React.FunctionComponent< LaunchStepProps > = ( { onPrevStep, onNextStep } ) => {
 	const domain = useSelect( ( select ) => select( LAUNCH_STORE ).getSelectedDomain() );
 	const LaunchStep = useSelect( ( select ) => select( LAUNCH_STORE ).getLaunchStep() );
 	const { isExperimental } = useSelect( ( select ) => select( LAUNCH_STORE ).getState() );
-	const defaultPaidPlan = useSelect( ( select ) => select( PLANS_STORE ).getDefaultPaidPlan() );
 
 	const { updatePlan, setStep } = useDispatch( LAUNCH_STORE );
+
+	const { selectedFeatures } = useSite();
 
 	const hasPaidDomain = domain && ! domain.is_free;
 
@@ -67,10 +69,7 @@ const PlanStep: React.FunctionComponent< LaunchStepProps > = ( { onPrevStep, onN
 							: undefined
 					}
 					isExperimental={ isExperimental }
-					recommendedPlan={
-						/* @TODO: use selected features to recommend a plan here */
-						hasPaidDomain ? defaultPaidPlan : undefined
-					}
+					selectedFeatures={ selectedFeatures }
 				/>
 			</div>
 			<div className="nux-launch-step__footer">
