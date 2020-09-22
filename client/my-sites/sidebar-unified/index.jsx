@@ -18,7 +18,7 @@ import { useSelector, useDispatch } from 'react-redux';
  */
 import { getCurrentRoute } from 'state/selectors/get-current-route';
 import { getSelectedSiteId } from 'state/ui/selectors';
-import { getAdminMenu } from 'state/admin-menu/selectors';
+import { getAdminMenu, getIsRequestingAdminMenu } from 'state/admin-menu/selectors';
 import { isUnderDomainManagementAll } from 'my-sites/domains/paths';
 import { isUnderEmailManagementAll } from 'my-sites/email/paths';
 import { requestAdminMenu } from '../../state/admin-menu/actions';
@@ -27,6 +27,7 @@ import MySitesSidebarUnifiedItem from './item';
 import MySitesSidebarUnifiedMenu from './menu';
 import Sidebar from 'layout/sidebar';
 import SidebarSeparator from 'layout/sidebar/separator';
+import Spinner from 'components/spinner';
 
 import 'layout/sidebar-unified/style.scss';
 import 'state/admin-menu/init';
@@ -34,6 +35,7 @@ import 'state/admin-menu/init';
 export const MySitesSidebarUnified = ( { path } ) => {
 	const reduxDispatch = useDispatch();
 	const selectedSiteId = useSelector( getSelectedSiteId );
+	const isRequestingMenu = useSelector( getIsRequestingAdminMenu );
 	useEffect( () => {
 		if ( selectedSiteId !== null ) {
 			reduxDispatch( requestAdminMenu( selectedSiteId ) );
@@ -52,7 +54,10 @@ export const MySitesSidebarUnified = ( { path } ) => {
 		return isUnderDomainManagementAll( currentRoute ) || isUnderEmailManagementAll( currentRoute );
 	} );
 
-	//console.log( { menuItems } );
+	if ( isRequestingMenu ) {
+		return <Spinner />;
+	}
+
 	return (
 		<Sidebar>
 			<CurrentSite forceAllSitesView={ isAllDomainsView } />
