@@ -55,7 +55,7 @@ export const MySitesSidebarUnified = ( { path } ) => {
 	} );
 
 	if ( isRequestingMenu ) {
-		return <Spinner />;
+		return <Spinner className="sidebar-unified__menu-loading" />;
 	}
 
 	return (
