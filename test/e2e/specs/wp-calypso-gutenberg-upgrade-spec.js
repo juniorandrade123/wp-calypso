@@ -191,6 +191,7 @@ describe( `[${ host }] Test popular Gutenberg blocks in edge and non-edge sites 
 					RatingStarBlockComponent,
 					SubscriptionsBlockComponent,
 					TiledGalleryBlockComponent,
+					YoutubeBlockComponent,
 				].map( ( blockClass ) =>
 					driverHelper.waitTillPresentAndDisplayed( driver, blockClass.blockFrontendSelector )
 				)
@@ -233,7 +234,8 @@ describe( `[${ host }] Test popular Gutenberg blocks in edge and non-edge sites 
 			} );
 
 			step( 'Insert and configure core-embed/youtube', async function () {
-				await gEditorComponent.insertBlock( YoutubeBlockComponent );
+				const youtubeBlock = await gEditorComponent.insertBlock( YoutubeBlockComponent );
+				await youtubeBlock.embed( 'https://www.youtube.com/watch?v=FhMO5QnRNvo' );
 			} );
 
 			step( 'Insert and configure a8c/blog-posts', async function () {
