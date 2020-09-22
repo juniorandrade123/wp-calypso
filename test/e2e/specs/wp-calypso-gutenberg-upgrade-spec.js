@@ -189,8 +189,10 @@ describe( `[${ host }] Test popular Gutenberg blocks in edge and non-edge sites 
 					GalleryMasonryBlockComponent,
 					LayoutGridBlockComponent,
 					RatingStarBlockComponent,
+					SlideshowBlockComponent,
 					SubscriptionsBlockComponent,
 					TiledGalleryBlockComponent,
+					YoutubeBlockComponent,
 				].map( ( blockClass ) =>
 					driverHelper.waitTillPresentAndDisplayed( driver, blockClass.blockFrontendSelector )
 				)
@@ -245,7 +247,8 @@ describe( `[${ host }] Test popular Gutenberg blocks in edge and non-edge sites 
 			} );
 
 			step( 'Insert and configure jetpack/slideshow', async function () {
-				await gEditorComponent.insertBlock( SlideshowBlockComponent );
+				const slideshowBlock = await gEditorComponent.insertBlock( SlideshowBlockComponent );
+				await slideshowBlock.uploadImages( sampleImages );
 			} );
 
 			step( 'Insert and configure jetpack/rating-star', async function () {
@@ -257,7 +260,10 @@ describe( `[${ host }] Test popular Gutenberg blocks in edge and non-edge sites 
 			} );
 
 			step( 'Insert and configure coblocks/gallery-masonry', async function () {
-				await gEditorComponent.insertBlock( GalleryMasonryBlockComponent );
+				const galleryMasonryBlock = await gEditorComponent.insertBlock(
+					GalleryMasonryBlockComponent
+				);
+				await galleryMasonryBlock.uploadImages( sampleImages );
 			} );
 
 			step( 'Insert and configure jetpack/contact-info', async function () {
