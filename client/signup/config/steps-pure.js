@@ -329,6 +329,7 @@ export function generateSteps( {
 			props: {
 				isDomainOnly: true,
 				shouldShowDomainTestCopy: false,
+				forceHideFreeDomainExplainer: true,
 			},
 		},
 
@@ -339,6 +340,7 @@ export function generateSteps( {
 				isAllDomains: true,
 				isDomainOnly: true,
 				shouldShowDomainTestCopy: false,
+				forceHideFreeDomainExplainer: true,
 			},
 		},
 
