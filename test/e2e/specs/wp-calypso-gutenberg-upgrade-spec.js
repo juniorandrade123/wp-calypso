@@ -261,7 +261,19 @@ describe( `[${ host }] Test popular Gutenberg blocks in edge and non-edge sites 
 			} );
 
 			step( 'Insert and configure jetpack/contact-info', async function () {
-				await gEditorComponent.insertBlock( ContactInfoBlockComponent );
+				const contactInfoBlock = await gEditorComponent.insertBlock( ContactInfoBlockComponent );
+				await contactInfoBlock.fillUp( {
+					email: 'awesome@possum.ttt',
+					phoneNumber: '555-234-4323',
+					streetAddress: 'E2E street',
+					addressLine2: 'underground bunker 2',
+					addressLine3: '#1111',
+					city: 'GutenPolis',
+					state: 'Gutenfolia',
+					zipCode: '1337',
+					country: 'United Gutenberg States of Calypsoland',
+					linkToGmaps: true,
+				} );
 			} );
 
 			verifyBlocksInEditor( siteName );
